@@ -1,0 +1,42 @@
+# Ignore Maven build output directory
+target/
+
+# Ignore sensitive or log files
+src/main/resources/application.properties
+*.log
+*.log.*
+
+# Don't ignore important Maven wrapper files
+!.mvn/wrapper/maven-wrapper.jar
+
+# Don't ignore build directories in specific subdirectories
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
