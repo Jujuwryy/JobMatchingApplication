@@ -13,6 +13,25 @@ This application is a **Spring Boot-based job matching platform** that integrate
 
 ---
 
+## Vector Search for Job Matching
+Vector Search & NLP-based Matching
+
+This API leverages Hugging Face NLP models to transform job descriptions, required technologies, and job titles into high-dimensional vector embeddings. These embeddings are stored in MongoDB using vector search indexing, allowing for semantic similarity matching rather than simple keyword-based search.
+
+- **How it Works**
+
+- **Data Embedding**: Each job post is processed through a Hugging Face NLP model, generating vector embeddings.
+
+- **Storage in MongoDB**: These embeddings are stored alongside job posts in MongoDB.
+
+- **Semantic Search**: When a user searches for jobs, their input is also converted into an embedding, and vector similarity search finds the most relevant job postings.
+
+- **Example**
+
+If a user searches for "Software Engineer with Java experience", the system retrieves jobs that are semantically similar even if they don’t explicitly contain the words "Software Engineer" but mention related concepts.
+
+
+
 ## Tech Stack
 - **Java 17**
 - **Spring Boot 3.x**
