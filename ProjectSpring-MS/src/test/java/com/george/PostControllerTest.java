@@ -26,7 +26,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
 @ExtendWith(MockitoExtension.class)
 class PostControllerTest {
 
@@ -41,11 +40,11 @@ class PostControllerTest {
 
     // Test data
     private static final Post POST_1 = new Post("1", "Software Engineer", "Develops applications", 3, 
-            new String[]{"Java", "Spring", "MongoDB"});
+            List.of("Java", "Spring", "MongoDB"));
     private static final Post POST_2 = new Post("2", "Data Scientist", "Analyzes data and builds models", 5, 
-            new String[]{"Python", "Machine Learning", "Pandas"});
+            List.of("Python", "Machine Learning", "Pandas"));
     private static final Post POST_3 = new Post("3", "DevOps Engineer", "Manages infrastructure", 4, 
-            new String[]{"Docker", "Kubernetes", "AWS"});
+            List.of("Docker", "Kubernetes", "AWS"));
 
     @BeforeEach
     void setUp() {
@@ -96,7 +95,7 @@ class PostControllerTest {
     void createPost_ShouldReturnCreatedPost() throws Exception {
         // Given
         Post newPost = new Post("4", "Product Manager", "Oversees product development", 6, 
-                new String[]{"Leadership", "Agile", "Strategy"});
+                List.of("Leadership", "Agile", "Strategy"));
         when(postRepo.save(any(Post.class))).thenReturn(newPost);
 
         // When/Then
@@ -115,7 +114,7 @@ class PostControllerTest {
         // Given
         Post updatedPost = new Post("1", "Senior Software Engineer", 
                 "Develops applications and mentors junior developers", 5, 
-                new String[]{"Java", "Spring", "MongoDB", "Leadership"});
+                List.of("Java", "Spring", "MongoDB", "Leadership"));
         
         when(postRepo.findById(updatedPost.getId())).thenReturn(Optional.of(POST_1));
         when(postRepo.save(any(Post.class))).thenReturn(updatedPost);

@@ -91,6 +91,17 @@
 		    <scope>runtime</scope>
 		</dependency>
 		
+		<!-- MongoDB Java Sync Driver v5.2.0 or later -->
+   <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongodb-driver-sync</artifactId>
+      </dependency>
+   <!-- Java library for working with OpenAI models -->
+    <dependency>
+        <groupId>dev.langchain4j</groupId>
+        <artifactId>langchain4j-hugging-face</artifactId>
+        <version>0.35.0</version>
+    </dependency>
 	
 	
 	<!-- Testing Dependencies -->

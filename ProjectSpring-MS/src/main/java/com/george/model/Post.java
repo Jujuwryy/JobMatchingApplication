@@ -1,6 +1,7 @@
 package com.george.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,10 +20,10 @@ public class Post {
 	private String jobTitle;
 	private String jobDescription;
 	private int experience;
-	private String[] requiredTechs;
+	private List<String> requiredTechs;
 	
 	
-	public Post(String id, String jobTitle, String jobDescription, int experience, String[] requiredTechs) {
+	public Post(String id, String jobTitle, String jobDescription, int experience, List<String> requiredTechs) {
 		super();
 		this.id = id;
 		this.jobTitle = jobTitle;
@@ -56,17 +57,21 @@ public class Post {
 	public void setExperience(int experience) {
 		this.experience = experience;
 	}
-	public String[] getRequiredTechs() {
+	public List<String> getRequiredTechs() {
 		return requiredTechs;
 	}
-	public void setRequiredTechs(String[] requiredTechs) {
+	public void setRequiredTechs(List<String> requiredTechs) {
 		this.requiredTechs = requiredTechs;
 	}
+
+
 	@Override
 	public String toString() {
 		return "Post [id=" + id + ", jobTitle=" + jobTitle + ", jobDescription=" + jobDescription + ", experience="
-				+ experience + ", requiredTechs=" + Arrays.toString(requiredTechs) + "]";
+				+ experience + ", requiredTechs=" + requiredTechs + "]";
 	}
+	
+	
 	
 	
 	

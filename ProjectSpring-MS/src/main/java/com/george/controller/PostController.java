@@ -11,7 +11,10 @@ import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletResponse;
+
+import com.george.Service.JobMatchingService;
 import com.george.Service.PostService;
+import com.george.model.JobMatch;
 import com.george.model.Post;
 
 /**
@@ -23,6 +26,9 @@ public class PostController {
     
     @Autowired
     private PostService postService;
+    
+    @Autowired
+    private JobMatchingService jobMatchingService;
 
     /**
      * Redirects root URL to the Swagger UI.
@@ -161,6 +167,18 @@ public class PostController {
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @Operation(summary = "Find matching jobs", description = "Returns jobs matching the user profile")
+    @ApiResponse(responseCode = "200", description = "Successfully found matching jobs")
+    @PostMapping("/jobs/match")
+    public ResponseEntity<List<JobMatch>> findMatchingJobs(@RequestBody String userProfile) {
+        try {
+            List<JobMatch> matches = jobMatchingService.findMatchingJobs(userProfile);
+            return ResponseEntity.ok(matches);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
