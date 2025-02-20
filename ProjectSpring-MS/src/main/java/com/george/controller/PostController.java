@@ -31,7 +31,7 @@ public class PostController {
     private JobMatchingService jobMatchingService;
 
     /**
-     * Redirects root URL to the Swagger UI.
+     * Redirects the root URL to the Swagger UI.
      *
      * @param response the HTTP servlet response
      * @throws IOException if an input or output exception occurs
