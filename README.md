@@ -24,7 +24,7 @@ This API leverages Hugging Face NLP models to transform job descriptions, requir
 
 - **Storage in MongoDB**: These embeddings are stored alongside job posts in MongoDB.
 
-- **Semantic Search**: When a user searches for jobs, their input is also converted into an embedding, and vector similarity search finds the most relevant job postings.
+- **Semantic Search**: When a user searches for jobs, their input is also converted into an embedding, and vector similarity search finds the most relevant job postings using knn.
 
 - **Example**
 
@@ -34,7 +34,7 @@ If a user searches for "Software Engineer with Java experience", the system retr
 
 ## Tech Stack
 - **Java 17**
-- **Spring Boot 3.x**
+- **Spring Boot**
 - **Spring Security (JWT Authentication)**
 - **Spring Data MongoDB**
 - **PostgresSQL** (for hashed user info)
@@ -120,7 +120,7 @@ INFO [com.george.controller.UserController] - User george logged in successfully
 ## Future Enhancements
 - **Implement Kafka for real-time job alerts**.
 - **Add Role-Based Access Control (RBAC)** for different user roles.
-- **Optimize vector search for better recommendations**.
+- **Optimize vector search for better recommendations, currently using knn vectors**.
 
 ---
 
