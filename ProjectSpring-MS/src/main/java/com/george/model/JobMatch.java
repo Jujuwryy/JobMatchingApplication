@@ -4,9 +4,9 @@ import java.util.List;
 
 public class JobMatch {
 	
-    private Post job;
+    private Post job; //Post Object
     private double confidence;
-    private List<String> matchReasons;
+    private List<String> matchReasons; 
     
     public JobMatch() {}
     
