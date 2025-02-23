@@ -4,7 +4,10 @@
 This application is a **Spring Boot-based job matching platform** that integrates **MongoDB vector search**, **Spring Security with JWT authentication**, **AOP-based logging**, and **Swagger API documentation**. It provides features for **creating, searching, and managing job posts** while ensuring secure access through token-based authentication.
 
 ## Docker
-The application is containerized using Docker, making it easy to run the job matching platform in any environment without needing to manually install dependencies. The Docker image can be pulled from Docker Hub and run on any system with Docker installed. Kindly follow the overview on the README.md from the Docker Hub repo (https://hub.docker.com/repository/docker/jujuwry/jobmatch-rest-api/general) to be able to smoothly setup the image and its environment.
+The application is containerized using Docker, making it easy to run the job matching platform in any environment without needing to manually install dependencies. The Docker image can be pulled from Docker Hub and run on any system with Docker installed. Kindly follow the overview on the README.md from the Docker Hub repo by clicking the link below:
+
+<a href="https://hub.docker.com/repository/docker/jujuwry/jobmatch-rest-api/general" target="_blank">Docker Hub Repository</a> to be able to smoothly setup the image and its environment.
+
 
 ## Features
 - **User Authentication**: Secure login and registration with **BCrypt hashing** and JWT.
