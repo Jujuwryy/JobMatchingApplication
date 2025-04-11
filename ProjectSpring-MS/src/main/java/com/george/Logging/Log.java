@@ -6,17 +6,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+/**
+ * Aspect for logging application flow across Controller, Service, and Repository layers.
+ */
 @Aspect
 @Component
 public class Log {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Log.class);
-    
-    // Pointcut to capture all methods in controller
+
+    /**
+     * Pointcut that matches all classes in controller, service, and repository packages.
+     */
     @Pointcut("within(com.george.controller..*) || within(com.george.Service..*) || within(com.george.repository..*)")
     public void applicationPointcut() {}
 
-    // Log before method execution with method details
+    /**
+     * Logs method entry with class name, method name, and arguments.
+     *
+     * @param joinPoint provides reflective access to method being intercepted.
+     */
     @Before("applicationPointcut()")
     public void logBefore(org.aspectj.lang.JoinPoint joinPoint) {
         LOGGER.info("Starting method: {}.{} with arguments: {}", 
@@ -25,7 +34,12 @@ public class Log {
             joinPoint.getArgs());
     }
 
-    // Log after successful method execution with return value
+    /**
+     * Logs method exit after successful execution with return value.
+     *
+     * @param joinPoint provides method details.
+     * @param result the returned object from the method.
+     */
     @AfterReturning(pointcut = "applicationPointcut()", returning = "result")
     public void logAfterReturning(org.aspectj.lang.JoinPoint joinPoint, Object result) {
         LOGGER.info("Method {}.{} completed successfully with return: {}", 
@@ -34,7 +48,12 @@ public class Log {
             result);
     }
 
-    // Log exceptions with detailed error information
+    /**
+     * Logs any exception thrown by the method.
+     *
+     * @param joinPoint provides method details.
+     * @param ex the exception that was thrown.
+     */
     @AfterThrowing(pointcut = "applicationPointcut()", throwing = "ex")
     public void logAfterThrowing(org.aspectj.lang.JoinPoint joinPoint, Exception ex) {
         LOGGER.error("Exception in {}.{}: {} - {}", 
@@ -45,7 +64,13 @@ public class Log {
             ex);
     }
 
-    // Log method execution time and details
+    /**
+     * Logs execution time for a method, and raises warning if method takes too long.
+     *
+     * @param joinPoint provides reflective access and allows proceeding with method execution.
+     * @return the result from the method execution.
+     * @throws Throwable allows propagation of original exception.
+     */
     @Around("applicationPointcut()")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
@@ -55,15 +80,16 @@ public class Log {
         try {
             Object result = joinPoint.proceed();
             long executionTime = System.currentTimeMillis() - startTime;
-            
-            if (executionTime > 1000) { // Log warning for slow methods
+
+            // Warn if execution takes longer than 1 second
+            if (executionTime > 1000) {
                 LOGGER.warn("Slow execution - {}.{} took {} ms", 
                     className, methodName, executionTime);
             } else {
                 LOGGER.info("Normal execution - {}.{} took {} ms", 
                     className, methodName, executionTime);
             }
-            
+
             return result;
         } catch (Exception e) {
             long executionTime = System.currentTimeMillis() - startTime;
