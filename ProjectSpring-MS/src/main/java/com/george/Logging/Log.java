@@ -12,7 +12,7 @@ public class Log {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Log.class);
     
-    // Pointcut to capture all methods in controller, service, and repository layers
+    // Pointcut to capture all methods in controller
     @Pointcut("within(com.george.controller..*) || within(com.george.Service..*) || within(com.george.repository..*)")
     public void applicationPointcut() {}
 
